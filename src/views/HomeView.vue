@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import CounterComponent from '@/components/CounterComponent.vue'
+import CharactersComponent from '@/components/icons/CharactersComponent.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <CounterComponent />
+    <CharactersComponent />
+    <!-- <TheWelcome /> -->
   </main>
 </template>
