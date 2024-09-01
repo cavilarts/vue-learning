@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+const characters = [
+  { name: 'Luke Skywalker', height: 172, mass: 77, hair_color: 'blond' },
+  { name: 'C-3PO', height: 167, mass: 75, hair_color: 'n/a' },
+  { name: 'R2-D2', height: 96, mass: 32, hair_color: 'n/a' },
+  { name: 'Darth Vader', height: 202, mass: 136, hair_color: 'none' },
+  { name: 'Leia Organa', height: 150, mass: 49, hair_color: 'brown' },
+  { name: 'Owen Lars', height: 178, mass: 120, hair_color: 'brown, grey' },
+  { name: 'Beru Whitesun lars', height: 165, mass: 75, hair_color: 'brown' },
+  { name: 'R5-D4', height: 97, mass: 32, hair_color: 'n/a' },
+  { name: 'Biggs Darklighter', height: 183, mass: 84, hair_color: 'black' },
+  { name: 'Obi-Wan Kenobi', height: 182, mass: 77, hair_color: 'auburn, white' }
+]
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <header>Hello</header>
+  <main>
+    <h1>Star Wars Characters</h1>
+    <ul>
+      <li v-for="character in characters" :key="character.name">
+        <p>Name: {{ character.name }}</p>
+        <p>Height: {{ character.height }}</p>
+        <p>Mass: {{ character.mass }}</p>
+        <p v-if="character.hair_color !== 'n/a'">Hair Color: {{ character.hair_color }}</p>
+      </li>
+    </ul>
+  </main>
 </template>
 
 <style scoped>
