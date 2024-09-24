@@ -1,15 +1,25 @@
 <script>
-import PokedexComp from '@/components/CompositionComponents/PokedexComp.vue'
+import PokedexFullComp from '@/components/CompositionComponents/PokedexFullComp.vue'
 
 export default {
+  data() {
+    return {
+      favPokemon: 'Ekans'
+    }
+  },
   components: {
-    PokedexComp
+    PokedexFullComp
+  },
+  methods: {
+    changeFavPokemon(name) {
+      this.favPokemon = name
+    }
   }
 }
 </script>
 <template>
   <Suspense>
-    <PokedexComp />
+    <PokedexFullComp :favoritePokemon="favPokemon" @change-fav-pokemon="changeFavPokemon" />
     <template #fallback> Loading ... </template>
   </Suspense>
 </template>
