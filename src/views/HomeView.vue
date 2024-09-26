@@ -1,18 +1,18 @@
 <script>
 import PokedexFullComp from '@/components/CompositionComponents/PokedexFullComp.vue'
+import { favPokemon } from '../composables/countStore'
 
 export default {
-  data() {
-    return {
-      favPokemon: 'Ekans'
-    }
+  setup() {
+    return { favPokemon }
   },
+  data() {},
   components: {
     PokedexFullComp
   },
   methods: {
     changeFavPokemon(name) {
-      this.favPokemon = name
+      favPokemon.value = name
     }
   }
 }
@@ -23,3 +23,13 @@ export default {
     <template #fallback> Loading ... </template>
   </Suspense>
 </template>
+
+<style>
+button {
+  background-color: #020202;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  font-weight: 600;
+}
+</style>

@@ -13,6 +13,7 @@ defineProps({
 const emits = defineEmits(['change-fav-pokemon'])
 
 const region = ref('Kanto')
+const customButton = ref('blue')
 const regionAllCaps = computed(() => {
   return region.value.toUpperCase()
 })
@@ -39,7 +40,7 @@ function changeFavPokemon() {
 }
 </script>
 <template>
-  <button @click="updateRegion">Update Region</button>
+  <button @click="updateRegion" :class="customButton">Update Region</button>
   <h2>{{ region }}</h2>
   <h3>{{ regionAllCaps }}</h3>
   <h3>{{ regionNameLowerCase() }}</h3>
@@ -48,3 +49,14 @@ function changeFavPokemon() {
   <button @click="changeFavPokemon">change fav</button>
   <pre>{{ pokedex }}</pre>
 </template>
+<style scoped>
+button {
+  background-color: #8f2;
+  color: #1069f7;
+}
+
+.customButton {
+  background-color: #ff22aa;
+  color: #fff;
+}
+</style>
