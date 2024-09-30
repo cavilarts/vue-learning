@@ -2,6 +2,7 @@
 import { reactive } from 'vue'
 import { computed } from 'vue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 defineProps({
   favoritePokemon: {
@@ -11,7 +12,7 @@ defineProps({
 })
 
 const emits = defineEmits(['change-fav-pokemon'])
-
+const router = useRouter()
 const region = ref('Kanto')
 const customButton = ref('blue')
 const regionAllCaps = computed(() => {
@@ -38,6 +39,10 @@ function regionNameLowerCase() {
 function changeFavPokemon() {
   emits('change-fav-pokemon', 'Raichu')
 }
+
+function navigateToDetails() {
+  router.push('/about')
+}
 </script>
 <template>
   <button @click="updateRegion" :class="customButton">Update Region</button>
@@ -47,7 +52,12 @@ function changeFavPokemon() {
   <p>{{ types.favoriteType }}</p>
   <span>{{ favoritePokemon }}</span>
   <button @click="changeFavPokemon">change fav</button>
-  <pre>{{ pokedex }}</pre>
+  <button @click="navigateToDetails">Details</button>
+  <ul>
+    <li v-for="pokemon in pokedex.results" :key="pokemon.name">
+      <router-link :to="'/pokemon/' + pokemon.name">{{ pokemon.name }}</router-link>
+    </li>
+  </ul>
 </template>
 <style scoped>
 button {
