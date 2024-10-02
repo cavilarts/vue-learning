@@ -6,7 +6,9 @@ export default {
   setup() {
     return { favPokemon }
   },
-  data() {},
+  data() {
+    return {}
+  },
   components: {
     PokedexFullComp
   },

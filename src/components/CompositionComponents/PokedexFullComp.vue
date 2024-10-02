@@ -1,4 +1,5 @@
 <script setup>
+import { useFavoritePokemon } from '@/stores/counter'
 import { reactive } from 'vue'
 import { computed } from 'vue'
 import { ref } from 'vue'
@@ -11,6 +12,7 @@ defineProps({
   }
 })
 
+const { favorites, addToFavorites } = useFavoritePokemon()
 const emits = defineEmits(['change-fav-pokemon'])
 const router = useRouter()
 const region = ref('Kanto')
@@ -43,6 +45,10 @@ function changeFavPokemon() {
 function navigateToDetails() {
   router.push('/about')
 }
+
+function clickFavButton(name) {
+  addToFavorites(name)
+}
 </script>
 <template>
   <button @click="updateRegion" :class="customButton">Update Region</button>
@@ -56,6 +62,9 @@ function navigateToDetails() {
   <ul>
     <li v-for="pokemon in pokedex.results" :key="pokemon.name">
       <router-link :to="'/pokemon/' + pokemon.name">{{ pokemon.name }}</router-link>
+      <button @click="clickFavButton(pokemon.name)">
+        Favorite {{ favorites.includes(pokemon.name) ? '⭐️' : '' }}
+      </button>
     </li>
   </ul>
 </template>

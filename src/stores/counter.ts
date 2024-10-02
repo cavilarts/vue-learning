@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore('counter', () => {
@@ -7,6 +7,21 @@ export const useCounterStore = defineStore('counter', () => {
   function increment() {
     count.value++
   }
-
   return { count, doubleCount, increment }
+})
+
+export const useFavoritePokemon = defineStore('favPokemon', () => {
+  const favorites = reactive([])
+
+  function addToFavorites(name: string) {
+    if (favorites.includes(name)) {
+      const index = favorites.indexOf(name)
+
+      favorites.splice(index, 1)
+    } else {
+      favorites.push(name)
+    }
+  }
+
+  return { favorites, addToFavorites }
 })
